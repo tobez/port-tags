@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html id="port-tags">
+<head>
+	<title>[% title %]</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="robots" content="noarchive,nofollow,noindex"/>
+	<link rel="stylesheet" type="text/css" href="/port-tags/port-tags.css?v=ice"/>
+	<link rel="shortcut icon" type="image/x-icon" href="http://www.tobez.org/favicon.ico" />
+[% IF test %]
+<script type="text/javascript">
+var current_tags;
+var cb;
+var tags;
+var all_tags;
+
+function get_text_contents(n) {
+	var s = '';
+	var children = n.childNodes;
+	for(var i = 0; i < children.length; i++) {
+		var child = children[i];
+		if (child.nodeType == 3) {  /* Node.TEXT_NODE */
+			s += child.data;
+		} else {
+			s += get_text_contents(child);
+		}
+	}
+	return s;
+}
+
+function get_tags(id)
+{
+	var c = document.getElementById(id);
+	var li = c.getElementsByTagName("li");
+	var tags = new Array;
+	for (var i = 0; i < li.length; i++) {
+		var t = get_text_contents(li[i]);
+		if (t.match(/^\w+$/)) {
+			tags[t] = li[i];
+		}
+	}
+	return tags;
+}
+
+function update_suggestions()
+{
+	// var dd = document.getElementById("descript");
+	// var dbg = "";
+	var s = cb.value;
+	// dbg = "cb.value: [" + s + "]";
+	var t;
+	if (s.match(/^\s+$/) || s.indexOf(current_tags) == 0) {
+		t = tags;
+	} else {
+		t = all_tags;
+		if (current_tags)
+			for (var i in tags)
+				tags[i].style.display = 'inline';
+	}
+	s = s.replace(/\s+$/, "");
+	s = s.replace(/^.*?(\S+)$/, "$1");
+	if (s == current_tags)
+		s = "";
+	// dbg = dbg + ", replaced: [" + s + "]";
+	// dbg = dbg + ", current_tags being: [" + current_tags + "]";
+	// dd.innerHTML = dbg;
+	for (var i in t) {
+		if (s == "" || i.indexOf(s) == 0) {
+			t[i].style.display = 'inline';
+		} else {
+			t[i].style.display = 'none';
+		}
+	}
+}
+
+function handler(ev)
+{
+	var e = (ev || window.event);
+	if (e.type == 'keyup') {
+		update_suggestions();
+	} else if (e.type == 'keydown') {
+		if (e.keyCode == 13) {
+			if (e.preventDefault) e.preventDefault();
+			var url = window.location.href;
+			url = url.replace(/\/.*$/, "");
+			url = url + "[% base %]";
+			var s = cb.value;
+			s = s.replace(/\s+$/, "");
+			url = url + "/" + s.split(" ").join("+");
+			window.location.href = url;
+		}
+	}
+}
+
+function init_completion()
+{
+[% IF hcur.size %]
+	current_tags = "[% hcur.keys.sort.join(' ') %]";
+[% ELSE %]
+	current_tags = "";
+[% END %]
+	cb = document.getElementById("complete");
+	cb.value = current_tags;
+	tags = get_tags(current_tags ? "related_tags" : "all_tags");
+	all_tags = get_tags("all_tags");
+	if (window.focus)
+		cb.focus();
+	document.onkeydown = document.onkeypress = document.onkeyup = handler;
+}
+</script>
+[% END %]
+</head>
+[% IF test %]
+<body onLoad="init_completion()">
+[% ELSE %]
+<body>
+[% END %]
+<div class="banner">
+<a class="hide" href="#main">skip to content</a>
+<ul class="nav"><li class="first"><a href="[% base %]">main</a></li>
+<li><a href='http://www.freebsd.org/'>FreeBSD.org</a></li>
+<li><a href="http://www.freebsd.org/ports/">ports</a></li>
+<li><a href='http://www.freshports.org/'>FreshPorts</a></li>
+<li><a href="/about-port-tags.html">about</a></li>
+</ul>
+<h1> <a href="[% base %]">port-tags</a>
+[% IF hcur.size %]
+ /&nbsp;[% hcur.keys.sort.join('+') %]
+[% END %]
+ </h1>
+</div>
+<hr />
+<h2 id="sidebar" class="hide">tag bundles</h2>
+<div class="cloud right">
+<ul class="bundles">
+[% IF test %]
+<div class="search-box">
+<form method="get" action="[% base %]">
+<label for="complete" style="margin-right: 0.3em">tags</label>
+<input name="tags" id="complete" size="24" value="[% hcur.keys.sort.join(' ') %]" autocomplete="off"/>
+</form>
+</div>
+[% END %]
+[% IF related.size > 0 %]
+<li class="bundle fold" id="related_tags"><h3 class="label"><span>related tags</span></h3>
+<ul>
+[% FOREACH t = related %]
+[% IF t.count >= 100 %]
+[% class = "rel ten" %]
+[% ELSIF t.count >= 25 %]
+[% class = "rel" %]
+[% ELSE %]
+[% class = "rel one" %]
+[% END %]
+<li><a class="[% class %]" href="[% base %]/[% hcur.keys.sort.join('+') %]+[% t.tag %]">[% t.tag %]</a></li>
+[%+ END %]
+</ul>
+</li>
+[% END %]
+<li class="bundle fold" id="all_tags"><h3 class="label"><span>tags</span></h3>
+<ul>
+[% FOREACH t = tags;
+     tag = t.tag;
+     IF hcur.item("$tag");
+       IF t.count >= 100;
+         class = 'class="cur ten" ';
+       ELSIF t.count >= 25;
+         class = 'class="cur" ';
+       ELSE;
+         class = 'class="cur one" ';
+       END
+%]
+<li class="multi"><a [% class %]href="[% base %]/[% hcur.keys.sort.except("$tag").join('+') %]" >!</a>&nbsp;
+[%   ELSE;
+       IF hrelated.item("$tag");
+         IF t.count >= 100;
+           class = 'class="rel ten" ';
+         ELSIF t.count >= 25;
+           class = 'class="rel" ';
+         ELSE;
+           class = 'class="rel one" ';
+         END;
+       ELSE;
+         IF t.count >= 100;
+           class = 'class="ten" ';
+         ELSIF t.count >= 25;
+           class = "";
+         ELSE;
+           class = 'class="one" ';
+         END;
+       END
+%]
+<li>
+[% END %]
+<a title="[% t.count %] ports" [% class %]href="[% base %]/[% t.tag %]">[% t.tag %]</a></li>
+[%+ END %]
+</ul>
+</li>
+</ul>
+</div>
+<hr />
+<div id="main">
+<div class="descript" id="descript">
+[% IF hcur.size %]
+Ports tagged '[% hcur.keys.sort.join('+') %]' ([% n_ports %])
+[% ELSE %]
+All ports ([% n_ports %])
+[% END %]
+</div>
+[% BLOCK pager %]
+<div class="pager">
+ &laquo; 
+[% IF offset > 0 %]
+ <a href="[% base %]/[% hcur.keys.sort.join('+') %]?o=[% offset-limit > 0 ? offset-limit : 0 %]">prev</a>
+[% ELSE %]
+ prev
+[% END %]
+&nbsp;|&nbsp;
+[% IF offset + limit < n_ports %]
+<a href="[% base %]/[% hcur.keys.sort.join('+') %]?o=[% offset+limit %]">next</a>
+[% ELSE %]
+next
+[% END %]
+ &raquo; 
+&nbsp; &nbsp; &nbsp;
+[% IF limit >= n_ports %]
+showing all [% n_ports %] items
+[% ELSE %]
+page [% offset / limit + 1 | format "%d" %] of [% ( n_ports + limit - 1 ) / limit | format "%d" %]
+[% END %]
+</div>
+[% END %]
+[% INCLUDE pager %]
+<ol class="posts">
+[% FOREACH p = ports %]
+<li class="post">
+<h3 class="desc"><a rel="nofollow" href="http://www.freebsd.org/cgi/cvsweb.cgi/~checkout~/ports/[% p.origin %]/pkg-descr">[% p.origin %]</a></h3>
+<div class="extended">[% p.comment %]</div>
+<div class="meta"><a href="http://www.freebsd.org/cgi/cvsweb.cgi/ports/[% p.origin %]/">cvsweb</a>
+<a href="http://www.freshports.org/[% p.origin %]/">FreshPorts</a>
+<a href="http://portsmon.freebsd.org/portoverview.py?category=[% p.category %]&portname=[% p.name %]">portsmon</a>
+</div>
+[% IF p.tags.size > 0 %]
+<div class="meta">
+<strong>tags:&nbsp;</strong>
+[% FOREACH tt = p.tags %]
+ [%+ tt %]
+[% END %]
+</div>
+[% END %]
+</li>
+[% END %]
+</ol>
+[% INCLUDE pager %]
+<hr />
+</div>
+<!-- <script type="text/javascript">document.write('<div id="bottom">&nbsp;<\/div><div style="visibility:hidden">')</script>
+-->
+<div id="footer">
+<!-- <p id="items-per-page">&raquo; showing <strong>10</strong>, <a href='?setcount=25'>25</a>, <a href='?setcount=50'>50</a>, <a href='?setcount=100'>100</a> items per page</p>
+-->
+<p id="items-per-page">&raquo; showing <strong>10</strong> ports per page</p>
+<!-- <ul>
+<li class="first"><img src="/static/img/delicious.small.gif" width="10" height="10" alt="" /> <a href="http://del.icio.us/">del.icio.us</a></li><li><a href="http://del.icio.us/doc/about">about</a></li><li><a href="http://blog.del.icio.us/">blog</a></li><li><a href="http://del.icio.us/doc/terms">terms of service</a></li><li><a href="http://del.icio.us/doc/privacy">privacy policy</a></li><li><a href="http://del.icio.us/doc/copyright">copyright policy</a></li><li><a href="mailto:support@del.icio.us">contact us</a></li><li><a class="rss" href="/rss/Grrrr/creationism+biology" title="RSS"><img src="/static/img/rss.gif" width="36" height="14" alt="RSS" /></a> feed for this page (<a href="http://creativecommons.org/licenses/by/2.5/" title="Creative Commons Attribution">licensed</a>)</li></ul>
+-->
+<ul><li class="first">
+<a href="[% base %]">port-tags v. 0.11 &alpha;</a></li>
+<li><a href="/about-port-tags.html">about</a></li>
+<li><a href="mailto:tobez@FreeBSD.org">contact us</a></li></ul>
+</div>
+<!-- <script type="text/javascript">document.write('<\/div>'); window.onresize = footer; footer()</script>
+-->
+<div style="clear:both"><!-- ie bugfix --></div>
+</body>
+</html>

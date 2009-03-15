@@ -1,0 +1,105 @@
+<body>
+<h1>Port-tags version 0.11 &alpha; (alpha) API</h1>
+
+<h2>Port list mode</h2>
+
+<p>
+If you add a m=pl ("mode = portlist") parameter to the URL,
+it will return a newline separated list of matching ports:
+</p>
+
+<div>
+<a href="/port-tags/index.cgi/devel+mail?m=pl">http://bsd2.be/port-tags/index.cgi/devel+mail?m=pl</a>
+</div>
+
+<p>
+For performance reasons, the number of returned ports is limited to 200 by
+default.
+</p>
+
+<p>
+So that
+</p>
+
+<div>
+        <a href="/port-tags/index.cgi/japanese?m=pl">http://bsd2.be/port-tags/index.cgi/japanese?m=pl</a>
+</div>
+
+<p>
+will return
+</p>
+
+<div><pre>
+        E(too many)[433]
+</pre></div>
+
+<p>
+instead of all 433 ports.  This can be overridden like this:
+</p>
+
+<div>
+        <a href="/port-tags/index.cgi/japanese?m=pl&n=450">http://bsd2.be/port-tags/index.cgi/japanese?m=pl&amp;n=450</a>
+</div>
+
+<p>
+The same goes for tag-less queries:
+</p>
+
+<div>
+        <a href="/port-tags/index.cgi/?m=pl">http://bsd2.be/port-tags/index.cgi/?m=pl</a>
+</div>
+
+<p>
+will produce
+</p>
+
+<div><pre>
+        E(too many)[13598]
+</pre></div>
+
+<p>
+But if you feel really adventurous,
+</p>
+
+<div>
+        <a href="/port-tags/index.cgi/?m=pl&n=60000">http://bsd2.be/port-tags/index.cgi/?m=pl&amp;n=60000</a>
+</div>
+
+<p>
+will return all 13598 ports.  Please note that "n" parameter does not
+specify how many ports to return, it specifies the upper limit only, so
+if that is exceeded, "E(too many)" is returned.
+</p>
+
+<h2>Related tags mode</h2>
+
+<p>
+If you add a m=reltags ("mode = related tags") parameter to the URL,
+it will return a newline separated list of related tags:
+</p>
+
+<div>
+<a href="/port-tags/index.cgi/devel+mail?m=reltags">http://bsd2.be/port-tags/index.cgi/devel+mail?m=reltags</a>
+</div>
+
+<p>
+For tag-less queries, the <b>reltags</b> call will return an empty list.
+</p>
+
+<h2>Port tags mode</h2>
+
+<p>
+If you add a m=pt ("mode = related tags") parameter to the URL,
+it will return a newline separated list of tags for a port specified
+in path info:
+</p>
+
+<div>
+<a href="/port-tags/index.cgi/lang/perl5.8?m=pt">http://bsd2.be/port-tags/index.cgi/lang/perl5.8?m=pt</a>
+</div>
+
+<p>
+If the port is not found, returns an empty list.
+</p>
+
+</body>

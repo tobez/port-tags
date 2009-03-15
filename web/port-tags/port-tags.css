@@ -1,0 +1,229 @@
+html,body,form,ul,li,h1,h3,h4,h5,p,ol.posts{margin:0; padding:0}
+body { font-family: arial, sans-serif; background-color:#fff }
+a img { border:0; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline }
+ul,ol.posts { list-style-type: none }
+hr{display:none}
+input { text-indent: 2px }
+input[type="submit"] { text-indent: 0 }
+input.ie.sized {width:32ex}
+ol {margin-top: 0; margin-bottom: 0}
+
+.left { float:left; }
+.right { float:right; }
+.hide, .nav li.hide, .dupe { display:none }
+.right.cloud, .right.list { background-color: #eee; margin-left: 0.5em; font-size: 80%; position:relative; z-index:2 }
+.right.cloud { width: 40%; text-align: justify; padding: 0 10px 0 20px; }
+
+.cloud .bundle h3 { 
+	font-size: 110%; font-weight:bold;
+	text-decoration:none;
+	margin-left: -4px; padding-right: 0.2em;
+	display:inline;
+}
+.cloud .label span { text-align: left;}
+.cloud .bundles li li, .cloud .bundles ul, .cloud .bundle div { display:inline; }
+.cloud .bundles li.options li, .cloud .bundles li li.options { display: block; }
+.cloud li.options a { font-size: 100% }
+.cloud li.bundle { padding-top: 4px; }
+.cloud li.multi { text-align: right;  }
+.cloud li a, .bundles .tag { color: blue; font-size: 90% }
+.bundles .one { color: #77f; }
+.bundles .rel { color: green; font-size: 90%; text-align:justify; }
+.bundles .cur { color: red; text-align:justify; }
+.bundles .ten, .bundles .cur { font-size: 110%; }
+.bundles .grey span { color: #888 }
+.bundles img { position:relative; padding-right: 4px; }
+
+.list { padding: 0 0.5em 1em 1em; }
+.list .bundles, .cloud .bundles { padding-bottom: 0.5em }
+.list .label span { font-weight: bolder; font-size: 100%; text-decoration:none; padding-left: 33px; }
+.list .bundle img { float: left; margin-right: 8px; text-align: right; padding: 6px 0 0 25px; }
+.list li.bundle {padding-top: 0.20pc; margin-bottom: 0.15pc}
+.list li li span, .list .option span { float: left; width: 25px; margin-right: 8px; text-align: right;}
+
+ul.bundles li.ffhack { font-size:1px; line-height:0; display:block !important }
+
+.arrow { margin-left: -10px !important }
+.arrow span { padding-left: 0 !important }
+
+DIV.delRightTitle, DIV.delPostInfo { font-weight: bolder; font-size: 150%; margin-left: 0 }
+DIV.delRightTitle, .list h2 { margin: 0 0 0.5pc 0; padding: 0.5pc 0 0 0 }
+
+.banner { padding: 0.5ex 0 0.5pc 0.5em;	background-color: #ddd;	clear: both }
+.banner h1 {
+	font-weight: bolder; font-size: 150%;
+	margin:0; padding:0 0 0 26px; display: inline;
+/*	background: url(/images/tobez-52x52.png) left no-repeat */
+}
+.banner h2, .delPage h2 { display:inline; font-size: 100%; font-weight: normal }
+.nav { float: right; padding: 0.5pc 0.5pc 0 0 }
+.nav li, #footer li{display:inline; border-left: 1px solid #444; padding:0 0.4em;}
+.nav li.first, #footer li.first{border-left:0; padding-left: 0}
+
+.post { margin: 0 0 0.25pc 0; padding-top: 0.5ex; }
+.by-url .post {margin: 0 0 0.25pc 5.5em; position:relative; z-index: 0; }
+.by-minute .post {margin: 0 0 0.25pc 6.5em; position:relative; z-index: 0; }
+.by-url .date {position:absolute; top:0.5em; left: -6em; font-size: 1.1em; color: #000; }
+.by-minute .date {position:absolute; top:0.5em; left: -7.5em; font-size: 1.1em; color: #000; }
+i.highlighted { padding:  0.2em; background-color: #ffffd0; }
+h3.desc{font-size: 100%; font-weight: normal}
+.colorBar { padding: 0 1em; }
+.meta { font-size: 75%; color: #999; }
+.extended { font-size: 83%; }
+
+.delPost { margin-bottom: 0.25pc; font-size: 100%; padding: 0.5ex 0 0 8px }
+DIV.delPostInfo { margin-bottom: 0.25pc; font-size: 100%; padding: 1.0pc 0 0 0.5em }
+DIV.delPostExtended { font-size: 90%; margin-left: 5pc }
+DIV.delBookmark { float: left; }
+.doc h3 { font-weight:bold; margin: 1.5em 0 0 8px }
+.doc h4 { margin: 0.9em 0 0.25em 8px }
+.doc h5 { font-size: 1em; margin: 0.9em 0 0.25em 8px }
+
+.posts, #posts { padding: 0.5ex 0.5em 0.5pc 0; }
+.delMain, .postui { padding: 0.5ex 0.5em 0.5pc 0.5em; }
+.rss img {vertical-align: bottom }
+.pager { padding: 0.5ex 0.5em 0 0; font-size: 80%; }
+#banme:link, #banme:hover {color: #fff; text-decoration:none}
+
+.bookmarklet, .bookmarklet:hover {
+	font-weight:bold; padding: 1px 2px;
+	border: 2px solid #888; background-color: #eee; text-decoration:none;
+}
+
+DIV.delPage, .tag-search { padding: 0.5em; background-color: #eee; }
+.tag-search { font-size: 80%; }
+.delInfo { padding-left: 0.5em; margin-bottom: 0.25pc; font-size: 100%; padding-top: 0.5pc; }
+
+SPAN.delNote { font-size: 80%; }
+SPAN.delNum { float: left; width: 20px; margin-right: 8px; text-align: right;}
+
+a.delTag, a.delCmd { font-size: 80%; }
+.meta a:link, .meta a:visited { color: #88f; }
+
+.temp label {
+	display:block; float:left; text-align:right; cursor:pointer;
+	min-width:125px; _width:125px; margin: 0.3em 10px 0 0;
+}
+.temp p {margin:4px 2px 4px 1em; padding:0}
+.temp input {margin:2px}
+.temp .indent { margin-left: 140px; }
+
+.error, .important, .notice { color:red }
+
+.postui .tag { padding: 2px; text-decoration:none; }
+.postui .tag:hover {background-color:#ffe6e6;text-decoration:none;}
+.selected { background-color: #ffe6e6;}
+td.rs {text-align: right}
+.postui .bundle .tag, #suggest .tag {font-size: 80% ! important}
+.smaller {font-size: 85% }
+a.noclicky, a.noclicky:hover { cursor: default; color: #000; text-decoration:none; }
+a.clicky {color: blue; cursor: pointer}
+.postui ul li.bundle { padding: 0.25em 0.6em; text-align: justify; display:none }
+.postui .bundle .label {display:inline}
+.postui .fold {display: block}
+.postui .label span { text-align: left; font-weight: bolder; font-size: 100%; }
+#sort { _margin-top: -25px; margin-top:0.2em; white-space: nowrap}
+
+a.bookmarklet2:link , a.bookmarklet2:visited{color:#003DF5; font-weight:bold}
+.instructions{color:#FF0000; font-weight:bold;}
+.delPostBold{font-weight:bold;padding: 1.0pc 0 0 0em}
+#blurb p { padding: 0.3em 0 }
+#blurb li { padding: 0 0.4em 0.7em 0; font-size:17px }
+#blurb h2 { font-size: 100%; font-weight: normal }
+a.expand-help { cursor:pointer; font-size: 80%; color: blue; text-decoration: none; font-weight:normal }
+a.expand-help:hover { text-decoration: underline }
+#bookmarklet-instructions .screenshot { border: 1px solid black; display: block; margin: 8px 0 16px 10px; }
+#bookmarklet-instructions img.button { vertical-align:bottom }
+#bookmarklet-instructions li { padding: 0.25em 0 }
+#bookmarklet-instructions .hidden-help { padding: 6px 0 }
+#bookmarklet-instructions .instruction { padding-bottom: 32px  }
+
+.slider {position:relative; left:0;top:0; font-size:0; display:inline; padding-right: 85px; min-width:80px}
+.slider-button {
+	position:absolute; top:2px; cursor: pointer;
+	min-width:10px; min-height:10px; width:10px; height:14px !important; height:14px; 
+	border: 2px solid #888; background-color:#ccc
+}
+.slider-track { position:absolute; left:0px; top:10px; height:4px; width:80px; background-color:#444 }
+
+.verysmall { font-size: 76.01%; }
+.close { margin-bottom: 0 !important; }
+.grey { color: #999; }
+.size100 { font-size: 100%; }
+
+.verify { padding: 1em 1em 0 1em; }
+.verify h3, .verify h4, .verify p { margin: 0 0 0.75em 0; }
+.verify ul { list-style-type: disc; }
+.verify li { margin: 1em; }
+.verifyDocAlign { padding-left: 1em; }
+.verifyDocAlign .doc h3, .verifyDocAlign .doc h4, .verifyDocAlign .doc h5 { margin-left: 0;}
+
+#main { margin: 1em }
+#main h2 { font-size: 100% }
+#bottom {clear:left; width:1px}
+#footer { padding: 2em 2em 1em 1em; text-align:left; clear:left }
+#footer ul { font-size: 75% }
+
+#items-per-page { margin: 0 0.5em 1em 0; font-size: 80% }
+#items-per-page a { color: #00f }
+/*#items-per-page a:link, #items-per-page a:visited { color: #00f }*/
+
+.search-box { font-size: 80% }
+
+
+#keep-share-discover { background-color:#eee; padding: 0.5em; font-size:76%; }
+#keep-share-discover p { margin-bottom: 0.75em }
+#keep-share-discover .learn-more { text-align:right; margin-bottom: 0 }
+
+#offsetPage { margin: 4em 0 0 4em; }
+#offsetPage #leftside { float: left; margin: 0 1em 2em 0; width: 20em; }
+#offsetPage .wider #leftside { float: left; margin: 0 1em 2em 0; width: 24em; }
+#offsetPage #leftside p, #login #leftside h1, #login #leftside h2, #login #leftside h3 { margin-bottom: 0.75em; }
+#offsetPage #rightside { float: left; width: 18em; }
+#offsetPage form { line-height: 1.4; }
+#offsetPage .rightLabels label {  }
+#offsetPage label { font-size: 100%; display:block; float:left; clear:both; width:4.5em; margin-right: 1em; }
+#offsetPage .wider label { width: 9em; }
+#offsetPage .labelIndent { margin-left: 5.5em; }
+#offsetPage .wider .labelIndent { margin-left: 10em; }
+#offsetPage #leftside img { padding: 5px 0 0 0; _padding: 0 0 1px 0; }
+#offsetPage .sized { width: 10em; font-size: 80%; }
+#offsetPage .wider .sized { width: 15em; font-size: 80%; }
+#offsetPage .button { font-size: 80%; }
+#offsetPage h3 { font-size: 100%; }
+#offsetPage .notice { color: #f00; }
+
+#bundleEdit { margin-right: 11em; padding: 1pc 0 0 1pc; }
+#bundleEdit #leftcol { font-size: 80%; float: left; width: 15em; }
+#bundleEdit #leftcol p { margin-right: 1em; }
+#bundleEdit h3 { font-size: 135%; }
+#bundleEdit a { color: #00e; }
+#bundleEdit .tag { padding: 0.1em; line-height: 1.6; }
+#bundleEdit .one { color: #77f; }
+#bundleEdit .ten { font-size: 110%; color: #00f; }
+#bundleEdit .one_nb { }
+#bundleEdit .ten_nb { font-size: 110%; }
+#bundleEdit .member { background-color: #fcc; color: #f00; }
+#bundleEdit .used { border: 1px solid #faa; }
+#bundleEdit .usedmember { background-color: #fcc; color: #f00; border: 1px solid #f99; }
+#bundleEdit #bundleList { list-style: none; margin: 0; padding: 0; }
+#bundleEdit #bundleList li { margin: 0; padding: 0.3em; }
+#bundleEdit .bg { background-color: #eee; }
+#bundleEdit #tagarea { font-size: 80%; margin-left: 15em; padding: 0.5em; }
+#bundleEdit #taglist { text-align: justify; padding-bottom: 1em; }
+#bundleEdit #inputarea { padding-bottom: 1em; }
+#bundleEdit #flashSaved { vertical-align: top; }
+#bundleEdit textarea { font-family: arial, sans-serif; width: 23em; height: 4em; font-size: 100%; }
+#bundleEdit #savebutton { padding: 0.25em; vertical-align: top; }
+
+.descript/*for description divs everywhere*/{font-weight:bold; font-size:90%; padding: 0 0.5em 10px 0;}
+.descript a{font-size:85%; padding: 0 0 0 1em;}
+
+#tagIn/*breadcrmbs text input*/ {font-weight: bolder; font-size: 150%;font-size:1.0em;background-color:#ddd;
+ border:1px solid #CCCCCC;color:#000000;font-family: arial, sans-serif;vertical-align:middle;  }
+#tagIn:focus {font-family: arial, sans-serif;font-size:1.0em;background-color:#fff; }
+
+img.mp3Button /*button for mp3 player*/ {cursor:pointer;}
+

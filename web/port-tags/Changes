@@ -1,0 +1,11 @@
+0.11     2006-04-12    add m=pt API mode
+0.10     2006-04-10    add m=reltags API mode
+0.09     2005-11-10    add a usage example with screenshots
+0.08     2005-11-10    minor template bugfix
+0.07     2005-11-10    show tags for ports
+0.06     2005-11-09    add an extra explanation to about doc
+0.05     2005-11-08    add simple API (?m=pl&n=450)
+0.04     2005-11-07    add downloadable port-tags.db and TAGS.bz2
+0.03     2005-11-07    first public release;  about document
+0.02     2005-11-07    use heuristics to improve tags generated
+0.01     2005-11-07    initial

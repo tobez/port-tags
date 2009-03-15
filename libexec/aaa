@@ -1,0 +1,35 @@
+#! /usr/bin/perl
+use strict;
+use warnings;
+
+my $INDEX_FILE = "/usr/ports/INDEX-6";
+
+process_index(
+	index               => $INDEX_FILE,
+);
+
+sub process_index
+{
+	my %p = @_;
+	open my $file, "< $p{index}" or die "cannot open $p{index}: $!\n";
+	my %ports;
+	while (<$file>) {
+		my ($port,@deps) = (split /\|/)[1,7,8,9,10,11];
+		my $n = 0;
+		for my $deps (@deps) {
+			my @deps = split " ", $deps;
+			$n = @deps if $n < @deps;
+		}
+		$ports{$port} = $n;
+	}
+	my @ports = sort { $ports{$b} <=> $ports{$a} } keys %ports;
+	for (@ports) {
+		print "$_\t$ports{$_}\n";
+	}
+}
+
+__END__
+
+The hypothesis is that comment field can sort of naturally yield tags
+information.  If this experiment proves useful, we can convert to using
+real tags.

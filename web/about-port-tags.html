@@ -1,0 +1,139 @@
+<body>
+<h1>Port-tags version 0.11 &alpha; (alpha)</h1>
+
+<p>
+<a href="/port-tags/">Port-tags</a> is like
+<a href="http://del.icio.us/">del.icio.us</a> for
+FreeBSD ports collection.
+</p>
+
+<p>
+On a theory that one picture is worth a thousand words,
+here is a <a href="/port-tags-usage-example.html">typical port-tags usage example</a>.
+</p>
+
+<p>
+The idea is to make ports classification easier and more convenient.
+Instead of using predefined and limited set of port categories, port-tags
+uses short one-word descriptions called <strong>tags</strong>.  A port can have
+an arbitrary number of tags associated with it.  One can use the web interface
+(and maybe a command-line interface in the future) to view only the ports that
+have particular tags associated with them.  This process is very efficient in
+narrowing down the number of sought ports.
+</p>
+
+<p>
+For those unfamiliar with the concept of tagging:
+please note that just selecting a single tag
+from the monstrous tag list
+does not buy you much.
+For example, by selecting <code>devel</code> tag,
+the resulting subset of ports with this tag consists of
+more than 2000 ports, which is substantially
+higher than even the size of notoriously huge <code>devel</code>
+category!
+</p>
+
+<p>
+The real power of tagging manifests itself when you limit
+the subset even more by adding more tags to the query.
+This is normally done by clicking on one of the "Related tags"
+in the upper right of the page.
+For example, selecting <code>mail</code> in addition to
+already selected <code>devel</code> tag
+will produce just 17 results, which is much more manageable.
+</p>
+
+<p>
+In this way one can very quickly find just those ports
+in which one has interest at the moment.
+</p>
+
+<p>
+There is a mailing list, which currently combines port-tags
+discussions with commit messages to port-tags system.
+To subscribe to it, send a mail to
+<a href="mailto:port-tags+subscribe@list.droso.net">port-tags+subscribe@list.droso.net</a>.
+</p>
+
+<p>
+The source code for port-tags can be fetched from SVN repository at
+<a href="http://svn.droso.net/svn/port-tags/trunk">http://svn.droso.net/svn/port-tags/trunk</a>.
+You will need either subversion client
+(<a href="http://www.freshports.org/devel/subversion/"><code>devel/subversion</code></a>)
+or an alternative, better client svk
+(<a href="http://www.freshports.org/devel/svk/"><code>devel/svk</code></a>).
+</p>
+
+<p>
+Debian has something similar called <a href="http://debtags.alioth.debian.org/">Debtags</a>.
+The main difference of Debtags and port-tags is not the absense
+or presense of particular frontends.  Rather, Debtags takes potentially
+more fruitful approach of getting the community to define the tags, while
+for now, port-tags uses an algorithmic approach to deduce the tags from
+the existing categories and from ports' COMMENT field.  Let's see how
+this works out and extend it to a community-based project at a later stage.
+</p>
+
+<p>
+The idea of port-tags came up in a conversation I had with
+<a href="http://www.autrijus.org/">Autrijus Tang</a> a couple of weeks
+ago.  Since then, I discussed it with various people (most notably
+with Lars Thegler, Erwin Lansing, and Florent Thoumie)
+and finally implemented it.
+</p>
+
+<p>
+In its current form, the service is not updated live.
+Instead, as it depends on the INDEX file, and the index file gets
+updated once a day, so does the port-tags database.
+</p>
+
+<p>
+If it looks too similar to del.icio.us, it is because for this early
+version I just stole the stylesheets from there.
+</p>
+
+<p>
+As of version 0.04 &alpha;,
+you can download the <a href="/port-tags/port-tags.db">generated database</a>
+that port-tags use.
+Or you can download a simple
+<a href="/port-tags/TAGS.bz2">textual database of tags</a>
+instead.
+Thanks to Michael C. Shultz for the idea.
+</p>
+
+<p>
+As of version 0.05 &alpha;,
+you can use a <a href="/api-port-tags.html">simple API</a> to get just the
+newline-separated list of ports with specified tags.
+Thanks to Panagiotis Astithas for the idea.
+</p>
+
+<p>
+As of version 0.10 &alpha;,
+you can use a <a href="/api-port-tags.html">simple API</a> to get the
+newline-separated list of related tags.
+Thanks to Alexander Botero-Lowry for the idea.
+</p>
+
+<p>
+As of version 0.11 &alpha;,
+you can use a <a href="/api-port-tags.html">simple API</a> to get the
+newline-separated list of tags for a given port.
+Thanks to Alexander Botero-Lowry for the idea.
+</p>
+
+<p>
+If you have any comments and suggestions with regard to port-tags,
+I would like to hear about it.  Is it useful?
+How can we make it <strong>more</strong> useful?
+What are the shortcomings?  Any show-stoppers which prevent
+<strong>you</strong> from using it?
+</p>
+
+<p>
+Anton Berezin <a href="mailto:tobez@FreeBSD.org">&lt;tobez@FreeBSD.org&gt;</a>
+</p>
+</body>
