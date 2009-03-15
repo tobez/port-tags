@@ -5,13 +5,18 @@ use Lingua::StopWords;
 use Lingua::Stem::Snowball;
 use DBI;
 
-my $INDEX_FILE = "/usr/ports/INDEX-5";
+my $INDEX_FILE = "/usr/ports/INDEX-6";
 my $DB         = "/home/tobez/var/db/port-tags.db";
 
 if (@ARGV && $ARGV[0] eq 'test') {
-	$INDEX_FILE = "/usr/ports/INDEX-5";
+	$INDEX_FILE = "/usr/ports/INDEX-6";
 	$DB         = "/home/tobez/_/port-tags.db";
 }
+my %origin2comment;
+my %stem2word;
+my $stem_cor;
+my %stemcount;
+my %stem2port;
 
 build_tags(
 	index               => $INDEX_FILE,
@@ -60,13 +65,9 @@ sub build_tags
 	process_index(%p);
 
 	my $extra_sw = extra_stop_words();
-	my $stem_cor = stem_correspond();
-	my %stem2word;
-	my %stemcount;
-	my %stem2port;
+	$stem_cor = stem_correspond();
 	my %wordcount;
 	my %word2port;
-	my %origin2comment;
 	while (my ($s,$w) = each %stem2word) {
 		my $word = (sort { length($a) <=> length($b) } keys %$w)[0];
 		next if $extra_sw->{$word};
